@@ -103,7 +103,7 @@
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>Mithun Technologies Snapshot Nexus Repository </name>
+	      <name>Cloud Technologies Snapshot Nexus Repository </name>
 	      <url>http://192.168.29.99:8081/repository/Proj-snapshot/</url>
 	    </snapshotRepository>
 	    
