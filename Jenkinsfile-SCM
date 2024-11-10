@@ -1,0 +1,20 @@
+node{
+    def mavenHome = tool name: "Maven"
+    stage('checkoutsatge'){
+        git credentialsId: 'd43db99d-81e9-4876-86af-c2a455d4c62b', url: 'https://github.com/Sandylnmi/maven-web-application.git'
+    }//checkoutstage closing
+    stage('build'){
+        sh "${mavenHome}/bin/mvn clean package"
+    }//build closing
+    stage('testing'){
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+    }//test closing
+    stage('deployment-artifacttool'){
+        sh "${mavenHome}/bin/mvn clean deploy"
+    }// artifact closing
+    stage('deployment-tomcat'){
+        sshagent(['2e822096-5203-47f9-97de-be5fb906bf56']) {
+            sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war  root@192.168.29.51:/opt/tomcat/webapps/"
+        }
+    }// deployment closing
+}//node closing
