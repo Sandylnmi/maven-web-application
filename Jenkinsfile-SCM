@@ -1,5 +1,6 @@
 node{
     def mavenHome = tool name: "Maven"
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '4')), pipelineTriggers([pollSCM('* * * * *')])])
     stage('checkoutsatge'){
         git credentialsId: 'd43db99d-81e9-4876-86af-c2a455d4c62b', url: 'https://github.com/Sandylnmi/maven-web-application.git'
     }//checkoutstage closing
